@@ -67,7 +67,20 @@ public class TodolistResource {
         System.out.println(id);
         // TODO sanitize input
 
-        todolistRepository.deleteTodo(id);
+        UUID deletedId = todolistRepository.deleteTodo(id);
+        System.out.println(deletedId);
+        return getAllTodos();
+    }
+
+    @POST
+    @Path("toggleTodo/{id}")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance toggleTodo(UUID id) {
+        System.out.println(id);
+        // TODO sanitize input
+
+        UUID toggledId = todolistRepository.toggleTodo(id);
+        System.out.println(toggledId);
         return getAllTodos();
     }
 

@@ -21,7 +21,16 @@ public class TodolistRepository implements PanacheRepositoryBase<Todo, UUID> {
         return this.listAll();
     }
 
-    public boolean deleteTodo(UUID id) {
-        return this.deleteById(id);
+    public UUID deleteTodo(UUID id) {
+        Todo todo = this.findById(id);
+        UUID oldId = todo.getId();
+        this.delete(todo);
+        return oldId;
+    }
+
+    public UUID toggleTodo(UUID id){
+        Todo todo = this.findById(id);
+        todo.setCompleted(!todo.isCompleted());
+        return todo.getId();
     }
 }

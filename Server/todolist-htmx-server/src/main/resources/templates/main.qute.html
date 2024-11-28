@@ -10,11 +10,11 @@
 <body>
 <h1>Todolist V1</h1>
 
-
 <table>
     <tr>
         <th>Text</th>
         <th>Status</th>
+        <th colspan="2">Modify</th>
     </tr>
     <tbody id="table" hx-trigger="load" hx-get="/api/todolist/getAllTodos" hx-swap="outerHTML"></tbody>
 </table>
