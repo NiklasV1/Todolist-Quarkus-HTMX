@@ -16,7 +16,6 @@ import static java.util.Objects.requireNonNull;
 @ApplicationScoped
 public class TodolistResource {
 
-    private final Template test;
     private final Template todoList;
 
     private Filter filter = Filter.ALL;
@@ -24,8 +23,7 @@ public class TodolistResource {
     @Inject
     TodolistRepository todolistRepository;
 
-    public TodolistResource(Template test, Template todoList) {
-        this.test = requireNonNull(test, "test page is required");
+    public TodolistResource(Template todoList) {
         this.todoList = requireNonNull(todoList, "test page is required");
     }
 
@@ -34,13 +32,6 @@ public class TodolistResource {
     @Produces(MediaType.TEXT_PLAIN)
     public String healthTest() {
         return "Health Test";
-    }
-
-    @GET
-    @Path("/htmxTest")
-    @Produces(MediaType.TEXT_HTML)
-    public TemplateInstance htmxTest() {
-        return test.data("test");
     }
 
     @GET
