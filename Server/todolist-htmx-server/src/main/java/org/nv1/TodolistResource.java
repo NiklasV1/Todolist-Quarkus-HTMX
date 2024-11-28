@@ -8,6 +8,8 @@ import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
+import java.util.UUID;
+
 import static java.util.Objects.requireNonNull;
 
 @Path("/api/todolist")
@@ -16,6 +18,8 @@ public class TodolistResource {
 
     private final Template test;
     private final Template todoList;
+
+    private Filter filter = Filter.ALL;
 
     @Inject
     TodolistRepository todolistRepository;
@@ -53,6 +57,17 @@ public class TodolistResource {
         System.out.println(text);
         // TODO sanitize input
         todolistRepository.addTodo(text);
+        return getAllTodos();
+    }
+
+    @POST
+    @Path("deleteTodo/{id}")
+    @Produces(MediaType.TEXT_HTML)
+    public TemplateInstance deleteTodo(UUID id) {
+        System.out.println(id);
+        // TODO sanitize input
+
+        todolistRepository.deleteTodo(id);
         return getAllTodos();
     }
 

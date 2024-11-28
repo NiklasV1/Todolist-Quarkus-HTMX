@@ -7,7 +7,7 @@
     <td>{todo.getText() ?: "hello"}</td>
     <td>{todo.isCompleted()}</td>
     <td>
-        <button>
+        <button hx-post="/api/todolist/deleteTodo/{todo.getId()}" hx-target="#table" hx-swap="outerHTML">
             Delete
         </button>
     </td>
