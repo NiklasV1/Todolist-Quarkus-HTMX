@@ -17,6 +17,14 @@ public class Todo {
 
     private boolean completed;
 
+    public Todo() {
+    }
+
+    public Todo(String text) {
+        this.text = text;
+        this.completed = false;
+    }
+
     public UUID getId() {
         return id;
     }
