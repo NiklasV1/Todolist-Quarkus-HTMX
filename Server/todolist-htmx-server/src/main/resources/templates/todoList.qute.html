@@ -1,0 +1,28 @@
+{@java.util.List<org.nv1.Todo> todos}
+
+<tbody id="table">
+{#if todos.size > 0}
+{#for todo in todos}
+<tr>
+    <td>{todo.getText() ?: "hello"}</td>
+    <td>{todo.isCompleted()}</td>
+    <td>
+        <button>
+            Delete
+        </button>
+    </td>
+</tr>
+{/for}
+{/if}
+<tr>
+    <td colspan="2">
+        <form hx-post="/api/todolist/addTodo" hx-target="#table" hx-swap="outerHTML">
+            <label hx-disinherit>
+                Text
+                <input name="text" type="text" placeholder="New Todo" hx-disinherit/>
+            </label>
+            <input type="submit" value="Create" hx-disinherit>
+        </form>
+    </td>
+</tr>
+</tbody>
