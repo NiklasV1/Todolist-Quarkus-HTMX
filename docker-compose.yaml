@@ -1,0 +1,27 @@
+services:
+  server:
+    image: todolist-htmx-server
+    pull_policy: never
+    container_name: todolist-htmx-server
+    build:
+      context: ./Server/todolist-htmx-server
+      dockerfile: ./src/main/docker/Dockerfile.jvm
+    depends_on:
+      - database
+    ports:
+      - 8080:8080
+
+  database:
+    image: todolist-htmx-postgres-database
+    pull_policy: never
+    container_name: todolist-htmx-postgres-database
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    volumes:
+      - todolist-htmx-postgres-data:/var/lib/postgresql/data
+    env_file:
+      - ./Database/database.env
+
+volumes:
+  todolist-htmx-postgres-data:
