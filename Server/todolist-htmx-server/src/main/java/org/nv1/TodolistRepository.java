@@ -28,7 +28,7 @@ public class TodolistRepository implements PanacheRepositoryBase<Todo, UUID> {
         return oldId;
     }
 
-    public UUID toggleTodo(UUID id){
+    public UUID toggleTodo(UUID id) {
         Todo todo = this.findById(id);
         todo.setCompleted(!todo.isCompleted());
         return todo.getId();

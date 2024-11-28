@@ -84,4 +84,5 @@ public class TodolistResource {
         return getAllTodos();
     }
 
+    // TODO implement filter
 }
